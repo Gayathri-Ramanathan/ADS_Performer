@@ -1,0 +1,337 @@
+<Activity mc:Ignorable="sap sap2010" x:Class="CallandFAX" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:s="clr-namespace:SmartAccidentDetection;assembly=DataService.SmartAccidentDetection" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:uibi="http://schemas.uipath.com/workflow/infrastructure/baf/uibi" xmlns:uiisi="http://schemas.uipath.com/workflow/infrastructure/is/uiisi" xmlns:um="clr-namespace:UiPath.Mail;assembly=UiPath.Mail.Activities" xmlns:umab="clr-namespace:UiPath.Mail.Activities.Business;assembly=UiPath.Mail.Activities" xmlns:umabh="clr-namespace:UiPath.Mail.Activities.Business.HtmlEditor;assembly=UiPath.Mail.Activities" xmlns:utia="clr-namespace:UiPath.Twilio.IntegrationService.Activities;assembly=UiPath.Twilio.IntegrationService.Activities" xmlns:utic="clr-namespace:UiPath.Twilio.IntegrationService.Client;assembly=UiPath.Twilio.IntegrationService" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <x:Members>
+    <x:Property Name="in_TxnItem" Type="InArgument(ui:QueueItem)" />
+    <x:Property Name="in_CamDetails" Type="InArgument(scg:List(s:AccidentDetectionSystem))" />
+  </x:Members>
+  <VisualBasic.Settings>
+    <x:Null />
+  </VisualBasic.Settings>
+  <sap:VirtualizedContainerService.HintSize>1406,1186</sap:VirtualizedContainerService.HintSize>
+  <sap2010:WorkflowViewState.IdRef>CallandFAX_1</sap2010:WorkflowViewState.IdRef>
+  <TextExpression.NamespacesForImplementation>
+    <sco:Collection x:TypeArguments="x:String">
+      <x:String>System.Activities</x:String>
+      <x:String>System.Activities.Statements</x:String>
+      <x:String>System.Activities.Expressions</x:String>
+      <x:String>System.Activities.Validation</x:String>
+      <x:String>System.Activities.XamlIntegration</x:String>
+      <x:String>Microsoft.VisualBasic</x:String>
+      <x:String>Microsoft.VisualBasic.Activities</x:String>
+      <x:String>System</x:String>
+      <x:String>System.Collections</x:String>
+      <x:String>System.Collections.Generic</x:String>
+      <x:String>System.Collections.ObjectModel</x:String>
+      <x:String>System.Data</x:String>
+      <x:String>System.Diagnostics</x:String>
+      <x:String>System.Drawing</x:String>
+      <x:String>System.IO</x:String>
+      <x:String>System.Linq</x:String>
+      <x:String>System.Net.Mail</x:String>
+      <x:String>System.Xml</x:String>
+      <x:String>System.Xml.Linq</x:String>
+      <x:String>UiPath.Core</x:String>
+      <x:String>UiPath.Core.Activities</x:String>
+      <x:String>System.Windows.Markup</x:String>
+      <x:String>GlobalVariablesNamespace</x:String>
+      <x:String>GlobalConstantsNamespace</x:String>
+      <x:String>System.Reflection</x:String>
+      <x:String>SmartAccidentDetection</x:String>
+      <x:String>UiPath.DataService.Definition</x:String>
+      <x:String>System.Runtime.Serialization</x:String>
+      <x:String>UiPath.BAF.Infrastructure.Entity</x:String>
+      <x:String>UiPath.IntegrationService.Infrastructure.Descriptor</x:String>
+      <x:String>UiPath.BAF.Infrastructure.Enums</x:String>
+      <x:String>UiPath.BAF.Infrastructure.Telemetry</x:String>
+      <x:String>UiPath.BAF.Infrastructure</x:String>
+      <x:String>UiPath.BAF.Infrastructure.Connection</x:String>
+      <x:String>UiPath.Mail</x:String>
+      <x:String>UiPath.Mail.Activities.Utils</x:String>
+      <x:String>UiPath.Mail.Activities.Business.HtmlEditor</x:String>
+      <x:String>UiPath.Twilio.IntegrationService.Activities</x:String>
+      <x:String>UiPath.IntegrationCore.Activities</x:String>
+      <x:String>UiPath.BAF.Activities</x:String>
+      <x:String>UiPath.BAF.Infrastructure.Contracts</x:String>
+      <x:String>UiPath.Mail.Activities.Business</x:String>
+      <x:String>UiPath.Shared.Activities</x:String>
+      <x:String>UiPath.Shared.Activities.ConnectionService.Contracts</x:String>
+      <x:String>UiPath.Mail.Activities</x:String>
+    </sco:Collection>
+  </TextExpression.NamespacesForImplementation>
+  <TextExpression.ReferencesForImplementation>
+    <sco:Collection x:TypeArguments="AssemblyReference">
+      <AssemblyReference>Microsoft.VisualBasic</AssemblyReference>
+      <AssemblyReference>mscorlib</AssemblyReference>
+      <AssemblyReference>System</AssemblyReference>
+      <AssemblyReference>System.Activities</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.TypeConverter</AssemblyReference>
+      <AssemblyReference>System.Core</AssemblyReference>
+      <AssemblyReference>System.Data</AssemblyReference>
+      <AssemblyReference>System.Data.Common</AssemblyReference>
+      <AssemblyReference>System.Data.DataSetExtensions</AssemblyReference>
+      <AssemblyReference>System.Drawing</AssemblyReference>
+      <AssemblyReference>System.Drawing.Common</AssemblyReference>
+      <AssemblyReference>System.Drawing.Primitives</AssemblyReference>
+      <AssemblyReference>System.Linq</AssemblyReference>
+      <AssemblyReference>System.Net.Mail</AssemblyReference>
+      <AssemblyReference>System.ObjectModel</AssemblyReference>
+      <AssemblyReference>System.Private.CoreLib</AssemblyReference>
+      <AssemblyReference>System.Xaml</AssemblyReference>
+      <AssemblyReference>System.Xml</AssemblyReference>
+      <AssemblyReference>System.Xml.Linq</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.UiAutomation.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Studio.Constants</AssemblyReference>
+      <AssemblyReference>System.Reflection.DispatchProxy</AssemblyReference>
+      <AssemblyReference>System.Reflection.TypeExtensions</AssemblyReference>
+      <AssemblyReference>System.Reflection.Metadata</AssemblyReference>
+      <AssemblyReference>System.Linq.Async</AssemblyReference>
+      <AssemblyReference>System.Private.ServiceModel</AssemblyReference>
+      <AssemblyReference>System.Collections</AssemblyReference>
+      <AssemblyReference>netstandard</AssemblyReference>
+      <AssemblyReference>DataService.SmartAccidentDetection</AssemblyReference>
+      <AssemblyReference>UiPath.DataService.Definition</AssemblyReference>
+      <AssemblyReference>System.Runtime.Serialization.Formatters</AssemblyReference>
+      <AssemblyReference>System.Private.DataContractSerialization</AssemblyReference>
+      <AssemblyReference>System.Runtime.Serialization.Primitives</AssemblyReference>
+      <AssemblyReference>UiPath.BAF.Infrastructure</AssemblyReference>
+      <AssemblyReference>UiPath.IntegrationService.Infrastructure</AssemblyReference>
+      <AssemblyReference>UiPath.Mail.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Mail</AssemblyReference>
+      <AssemblyReference>UiPath.Twilio.IntegrationService.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.DataService.Activities.Core</AssemblyReference>
+      <AssemblyReference>UiPath.Excel.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.IntelligentOCR.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.OCR.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.MLServices.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Pipelines.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Testing.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.UIAutomationCore</AssemblyReference>
+      <AssemblyReference>UiPath.Web.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Mail.Activities.Design</AssemblyReference>
+      <AssemblyReference>NPOI</AssemblyReference>
+      <AssemblyReference>UiPath.Excel.Activities.Design</AssemblyReference>
+      <AssemblyReference>System.Memory.Data</AssemblyReference>
+      <AssemblyReference>System.Console</AssemblyReference>
+      <AssemblyReference>System.Configuration.ConfigurationManager</AssemblyReference>
+      <AssemblyReference>System.Security.Permissions</AssemblyReference>
+      <AssemblyReference>System.ComponentModel</AssemblyReference>
+      <AssemblyReference>System.Memory</AssemblyReference>
+      <AssemblyReference>System.Private.Uri</AssemblyReference>
+      <AssemblyReference>UiPath.Workflow</AssemblyReference>
+      <AssemblyReference>System.Collections.NonGeneric</AssemblyReference>
+    </sco:Collection>
+  </TextExpression.ReferencesForImplementation>
+  <Sequence DisplayName="CallandFAX" sap:VirtualizedContainerService.HintSize="1416,1121" sap2010:WorkflowViewState.IdRef="Sequence_1">
+    <sap:WorkflowViewStateService.ViewState>
+      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+      </scg:Dictionary>
+    </sap:WorkflowViewStateService.ViewState>
+    <ui:ForEach x:TypeArguments="s:AccidentDetectionSystem" CurrentIndex="{x:Null}" DisplayName="For Each" sap:VirtualizedContainerService.HintSize="1354,1010" sap2010:WorkflowViewState.IdRef="ForEach`1_1" Values="[in_CamDetails]">
+      <ui:ForEach.Body>
+        <ActivityAction x:TypeArguments="s:AccidentDetectionSystem">
+          <ActivityAction.Argument>
+            <DelegateInArgument x:TypeArguments="s:AccidentDetectionSystem" Name="camDetails" />
+          </ActivityAction.Argument>
+          <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="1320,824" sap2010:WorkflowViewState.IdRef="Sequence_3">
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+            <Parallel sap:VirtualizedContainerService.HintSize="1278,736" sap2010:WorkflowViewState.IdRef="Parallel_1">
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+              <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="AddQItemLog.xaml - Invoke Workflow File" sap:VirtualizedContainerService.HintSize="334,689" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_1" UnSafe="False" WorkflowFileName="AddQItemLog.xaml">
+                <ui:InvokeWorkflowFile.Arguments>
+                  <InArgument x:TypeArguments="x:String" x:Key="inStrLog">
+                    <VisualBasicValue x:TypeArguments="x:String" ExpressionText="&quot;Contacted Police Station number - &quot; + camDetails.PoliceStationContactNumber + &quot; with FAX Number: &quot; + camDetails.PoliceStationFAXNumber + &quot; for CAM: &quot; + camDetails.CameraName + &quot; with ID: &quot; + camDetails.CameraID" />
+                  </InArgument>
+                  <InArgument x:TypeArguments="x:String" x:Key="inStrTxItemId">
+                    <VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_TxnItem.Id.ToString" />
+                  </InArgument>
+                </ui:InvokeWorkflowFile.Arguments>
+              </ui:InvokeWorkflowFile>
+              <utia:MakeCall ActivityInstanceId="01a070b7-bf99-4243-a6cc-82b10bd4c716" BindingsVersion="2.1" BusinessEntityName="Calls" ConfiguredBusinessEntity="Calls" ConnectionId="54169310-5f81-4051-b441-218bc31ebe93" Connector="uipath-twilio-messaging" CrudOperation="Create" DesignConnectionEnabled="True" DisplayName="Make a Call" sap:VirtualizedContainerService.HintSize="200,689" sap2010:WorkflowViewState.IdRef="MakeCall_1">
+                <utia:MakeCall.BusinessEntity>
+                  <uibi:BusinessEntity Name="Calls">
+                    <uibi:BusinessEntity.AllFields>
+                      <scg:List x:TypeArguments="uibi:EntityField" Capacity="7">
+                        <uiisi:OperationEntityField x:TypeArguments="x:String" Description="{x:Null}" ArgumentDirection="Out" ArgumentType="x:String" DataType="String" DisplayName="Sid" FormDataType="ExpressionTextBox" IsChildEntityField="True" IsCustomField="False" IsDefault="False" IsDeletable="False" IsHidden="True" IsIdField="True" IsMandatory="False" IsPriority="False" IsSelected="False" Location="Undefined" Name="Response.Sid" ShouldFilterOnChange="False" />
+                        <uiisi:OperationEntityField x:TypeArguments="utic:Calls" ArgumentDirection="In" ArgumentType="utic:Calls" DataType="Calls" Description="The object body" DisplayName="Body" FormDataType="ExpressionTextBox" IsChildEntityField="False" IsCustomField="False" IsDefault="False" IsDeletable="True" IsHidden="True" IsIdField="False" IsMandatory="True" IsParameter="True" IsPriority="False" IsSelected="False" Location="Undefined" Name="body" ShouldFilterOnChange="False" />
+                        <uiisi:OperationEntityField x:TypeArguments="utic:Calls" x:Name="__ReferenceID5" ArgumentDirection="Out" ArgumentType="utic:Calls" DataType="Calls" Description="The Calls object returned." DisplayName="Response" FormDataType="ExpressionTextBox" IsChildEntityField="False" IsCustomField="False" IsDefault="False" IsDeletable="True" IsHidden="False" IsIdField="False" IsMandatory="False" IsPriority="False" IsSelected="False" Location="Undefined" Name="Response" ShouldFilterOnChange="False">
+                          <uiisi:OperationEntityField.Metadata>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsPermanentlyHidden">False</x:Boolean>
+                            </scg:Dictionary>
+                          </uiisi:OperationEntityField.Metadata>
+                        </uiisi:OperationEntityField>
+                        <uiisi:OperationEntityField x:TypeArguments="x:String" x:Name="__ReferenceID1" ArgumentDirection="In" ArgumentType="x:String" DataType="String" Description="The receiver’s phone number" DisplayName="To" FormDataType="ExpressionTextBox" InArgumentValue="[camDetails.PoliceStationContactNumber]" IsChildEntityField="True" IsCustomField="False" IsDefault="False" IsDeletable="False" IsHidden="False" IsIdField="False" IsMandatory="True" IsPriority="False" IsSelected="False" Location="Undefined" Name="body.to" Order="1" ShouldFilterOnChange="False">
+                          <uiisi:OperationEntityField.ArgumentValue>
+                            <InArgument x:TypeArguments="x:String">[camDetails.PoliceStationContactNumber]</InArgument>
+                          </uiisi:OperationEntityField.ArgumentValue>
+                          <uiisi:OperationEntityField.Metadata>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <uiisi:CustomFieldsPriority x:Key="CustomFieldsPriority">Default</uiisi:CustomFieldsPriority>
+                            </scg:Dictionary>
+                          </uiisi:OperationEntityField.Metadata>
+                          <uiisi:OperationEntityField.Value>
+                            <VisualBasicValue x:TypeArguments="x:String">[camDetails.PoliceStationContactNumber]</VisualBasicValue>
+                          </uiisi:OperationEntityField.Value>
+                        </uiisi:OperationEntityField>
+                        <uiisi:OperationEntityField x:TypeArguments="x:String" x:Name="__ReferenceID2" ArgumentDirection="In" ArgumentType="x:String" DataType="String" Description="The caller’s phone number that is registered with Twilio" DisplayName="From" FormDataType="ExpressionTextBox" InArgumentValue="+15053982127" IsChildEntityField="True" IsCustomField="False" IsDefault="False" IsDeletable="False" IsHidden="False" IsIdField="False" IsMandatory="True" IsPriority="False" IsSelected="False" Location="Undefined" Name="body.from" Order="1" ShouldFilterOnChange="False">
+                          <uiisi:OperationEntityField.ArgumentValue>
+                            <InArgument x:TypeArguments="x:String">+15053982127</InArgument>
+                          </uiisi:OperationEntityField.ArgumentValue>
+                          <uiisi:OperationEntityField.Metadata>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <uiisi:CustomFieldsPriority x:Key="CustomFieldsPriority">Default</uiisi:CustomFieldsPriority>
+                            </scg:Dictionary>
+                          </uiisi:OperationEntityField.Metadata>
+                          <uiisi:OperationEntityField.Value>
+                            <Literal x:TypeArguments="x:String">+15053982127</Literal>
+                          </uiisi:OperationEntityField.Value>
+                        </uiisi:OperationEntityField>
+                        <uiisi:OperationEntityField x:TypeArguments="x:String" x:Name="__ReferenceID3" ArgumentDirection="In" ArgumentType="x:String" DataType="String" Description="TwiML instructions for the call. Ex: Ahoy there! If both 'Say' and 'URL' are provided then only the 'URL' parameter will be considered." DisplayName="Say" FormDataType="ExpressionTextBox" InArgumentValue="[&quot;Hi, I am calling to report a serious accident that just occurred and I found the instance from &quot;  + in_TxnItem.SpecificContent(&quot;CamFolderName&quot;).ToString.Split(&quot;_&quot;c)(0) + &quot;in the location &quot; +camDetails.CameraLocation.ToString +&quot; that needs immediate assistance. I have sent the image that was identified and other details through FAX.&quot;]" IsChildEntityField="True" IsCustomField="False" IsDefault="False" IsDeletable="False" IsHidden="False" IsIdField="False" IsMandatory="False" IsPriority="False" IsSelected="False" Location="Undefined" Name="body.twiml" Order="1" ShouldFilterOnChange="False">
+                          <uiisi:OperationEntityField.ArgumentValue>
+                            <InArgument x:TypeArguments="x:String" xml:space="preserve">["Hi, I am calling to report a serious accident that just occurred and I found the instance from "  + in_TxnItem.SpecificContent("CamFolderName").ToString.Split("_"c)(0) + "in the location " +camDetails.CameraLocation.ToString +" that needs immediate assistance. I have sent the image that was identified and other details through FAX."]</InArgument>
+                          </uiisi:OperationEntityField.ArgumentValue>
+                          <uiisi:OperationEntityField.Metadata>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <uiisi:CustomFieldsPriority x:Key="CustomFieldsPriority">Default</uiisi:CustomFieldsPriority>
+                            </scg:Dictionary>
+                          </uiisi:OperationEntityField.Metadata>
+                          <uiisi:OperationEntityField.Value>
+                            <VisualBasicValue x:TypeArguments="x:String" xml:space="preserve">["Hi, I am calling to report a serious accident that just occurred and I found the instance from "  + in_TxnItem.SpecificContent("CamFolderName").ToString.Split("_"c)(0) + "in the location " +camDetails.CameraLocation.ToString +" that needs immediate assistance. I have sent the image that was identified and other details through FAX."]</VisualBasicValue>
+                          </uiisi:OperationEntityField.Value>
+                        </uiisi:OperationEntityField>
+                        <uiisi:OperationEntityField x:TypeArguments="x:String" x:Name="__ReferenceID4" ArgumentDirection="In" ArgumentType="x:String" DataType="String" Description="The complete URL of the TwiML instructions for the call" DisplayName="URL" FormDataType="ExpressionTextBox" IsChildEntityField="True" IsCustomField="False" IsDefault="False" IsDeletable="False" IsHidden="False" IsIdField="False" IsMandatory="False" IsPriority="False" IsSelected="False" Location="Undefined" Name="body.url" Order="1" ShouldFilterOnChange="False">
+                          <uiisi:OperationEntityField.Metadata>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <uiisi:CustomFieldsPriority x:Key="CustomFieldsPriority">Default</uiisi:CustomFieldsPriority>
+                            </scg:Dictionary>
+                          </uiisi:OperationEntityField.Metadata>
+                        </uiisi:OperationEntityField>
+                      </scg:List>
+                    </uibi:BusinessEntity.AllFields>
+                    <uibi:BusinessEntity.EntityMetadata>
+                      <uibi:EntityMetadata Metadata="{x:Reference __ReferenceID0}" DisplayName="Calls" EligibleOperations="1" IsCustomEntity="False" Name="Calls" />
+                    </uibi:BusinessEntity.EntityMetadata>
+                    <uibi:BusinessEntity.Metadata>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object" x:Name="__ReferenceID0">
+                        <x:String x:Key="Object">Calls</x:String>
+                        <x:String x:Key="Client">UiPath.Twilio.IntegrationService.Client.CallsAPIClient</x:String>
+                        <x:String x:Key="Operation">CreateCall</x:String>
+                        <x:String x:Key="Path">/Calls</x:String>
+                      </scg:Dictionary>
+                    </uibi:BusinessEntity.Metadata>
+                    <uibi:BusinessEntity.SelectedFields>
+                      <scg:List x:TypeArguments="uibi:EntityField" Capacity="8">
+                        <x:Reference>__ReferenceID1</x:Reference>
+                        <x:Reference>__ReferenceID2</x:Reference>
+                        <x:Reference>__ReferenceID3</x:Reference>
+                        <x:Reference>__ReferenceID4</x:Reference>
+                        <x:Reference>__ReferenceID5</x:Reference>
+                      </scg:List>
+                    </uibi:BusinessEntity.SelectedFields>
+                    <uibi:BusinessEntity.TelemetryProperties>
+                      <scg:Dictionary x:TypeArguments="uibi:TelemetryGroup, scg:IDictionary(x:String, x:String)" />
+                    </uibi:BusinessEntity.TelemetryProperties>
+                  </uibi:BusinessEntity>
+                </utia:MakeCall.BusinessEntity>
+                <utia:MakeCall.CachedLookupValues>
+                  <scg:Dictionary x:TypeArguments="x:String, scg:List(uiisi:LookupValue)" />
+                </utia:MakeCall.CachedLookupValues>
+                <utia:MakeCall.DesignConnectionRequest>
+                  <uiisi:ConnectionParameters AuthType="ElementInstance" ConnectionId="54169310-5f81-4051-b441-218bc31ebe93" ConnectionName="2023-12-02T02:10:16.918" ConnectorKey="uipath-twilio-messaging">
+                    <uiisi:ConnectionParameters.TelemetryInfo>
+                      <uiisi:TelemetryInfo ActivityPack="UiPath.Twilio.IntegrationService.Activities" ActivityPackVersion="5.0.9" Source="StudioDesktop" />
+                    </uiisi:ConnectionParameters.TelemetryInfo>
+                  </uiisi:ConnectionParameters>
+                </utia:MakeCall.DesignConnectionRequest>
+                <utia:MakeCall.SelectedFields>
+                  <scg:List x:TypeArguments="uibi:EntityField" Capacity="5">
+                    <x:Reference>__ReferenceID1</x:Reference>
+                    <x:Reference>__ReferenceID2</x:Reference>
+                    <x:Reference>__ReferenceID3</x:Reference>
+                    <x:Reference>__ReferenceID4</x:Reference>
+                    <x:Reference>__ReferenceID5</x:Reference>
+                  </scg:List>
+                </utia:MakeCall.SelectedFields>
+                <utia:MakeCall.TelemetryProperties>
+                  <scg:Dictionary x:TypeArguments="uibi:TelemetryGroup, scg:IDictionary(x:String, x:String)" />
+                </utia:MakeCall.TelemetryProperties>
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+              </utia:MakeCall>
+              <umab:GmailApplicationCard ClientId="{x:Null}" ClientSecret="{x:Null}" Account="Please select an account" ConnectionAccountName="reachuipathtest@gmail.com" ConnectionId="429582e1-5569-4d0b-833b-39c03e20319d" DisplayName="Use Gmail" sap:VirtualizedContainerService.HintSize="530,689" sap2010:WorkflowViewState.IdRef="GmailApplicationCard_1" Timeout="90" UseConnectionService="True">
+                <umab:GmailApplicationCard.Body>
+                  <ActivityAction x:TypeArguments="um:IMailQuickHandle">
+                    <ActivityAction.Argument>
+                      <DelegateInArgument x:TypeArguments="um:IMailQuickHandle" Name="Gmail" />
+                    </ActivityAction.Argument>
+                    <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="496,507" sap2010:WorkflowViewState.IdRef="Sequence_2">
+                      <sap:WorkflowViewStateService.ViewState>
+                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                        </scg:Dictionary>
+                      </sap:WorkflowViewStateService.ViewState>
+                      <umab:SendMailX Bcc="{x:Null}" Body="{x:Null}" HtmlBodyFromText="{x:Null}" ReplyTo="{x:Null}" Account="[Gmail]" Cc="reachgayathriramanathan@gmail.com;nandhinee6197@gmail.com" DisplayName="Send Email" sap:VirtualizedContainerService.HintSize="434,396" sap2010:WorkflowViewState.IdRef="SendMailX_1" Importance="Normal" MaxBodyDocumentSizeMB="2" Sensitivity="Normal" Subject="[&quot;Emergency in &quot; + camDetails.CameraLocation.ToString]" To="[camDetails.PoliceStationFAXNumber.ToString+&quot;@cocofax.nett&quot;]" UseDocumentAsBody="False">
+                        <umab:SendMailX.Files>
+                          <scg:List x:TypeArguments="InArgument(x:String)" Capacity="1">
+                            <InArgument x:TypeArguments="x:String">[in_TxnItem.SpecificContent("FullImageFilePath").ToString.Split(";"c)(0)]</InArgument>
+                          </scg:List>
+                        </umab:SendMailX.Files>
+                        <umab:SendMailX.HtmlBodyFromFile>
+                          <umabh:HtmlContentArgument FilePath=".data/HtmlContent0.html">
+                            <umabh:HtmlContentArgument.RuntimeImages>
+                              <scg:Dictionary x:TypeArguments="x:String, InArgument(x:String)" />
+                            </umabh:HtmlContentArgument.RuntimeImages>
+                            <umabh:HtmlContentArgument.ValueMappings>
+                              <scg:List x:TypeArguments="umabh:HtmlValueMappingBase" Capacity="4">
+                                <umabh:HtmlTextValueMapping Name="Location" Value="[camDetails.CameraLocation]" />
+                                <umabh:HtmlTextValueMapping Name="CamName" Value="[camDetails.CameraName.ToString]" />
+                                <umabh:HtmlTextValueMapping Name="CamID" Value="[camDetails.CameraID.ToString]" />
+                                <umabh:HtmlTextValueMapping Name="MapLocation" Value="[camDetails.CameraMapLocation.ToString]" />
+                              </scg:List>
+                            </umabh:HtmlContentArgument.ValueMappings>
+                          </umabh:HtmlContentArgument>
+                        </umab:SendMailX.HtmlBodyFromFile>
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                      </umab:SendMailX>
+                    </Sequence>
+                  </ActivityAction>
+                </umab:GmailApplicationCard.Body>
+                <umab:GmailApplicationCard.EmailAddress>
+                  <InArgument x:TypeArguments="x:String">
+                    <Literal x:TypeArguments="x:String" Value="" />
+                  </InArgument>
+                </umab:GmailApplicationCard.EmailAddress>
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+              </umab:GmailApplicationCard>
+            </Parallel>
+          </Sequence>
+        </ActivityAction>
+      </ui:ForEach.Body>
+    </ui:ForEach>
+  </Sequence>
+</Activity>

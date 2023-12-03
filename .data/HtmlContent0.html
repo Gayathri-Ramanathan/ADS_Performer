@@ -1,0 +1,38 @@
+<HTML><HEAD>
+<STYLE type=text/css>
+        body {
+            font-family: Calibri;
+        }
+
+        p {
+            margin: 0;
+        }
+
+        .mapping {
+            background-color: #D3D4D7;
+            color: black;
+            padding: 1px;
+        }
+    </STYLE>
+<!-- Instruct the web browser control to use IE 6 to render the page. -->
+<META content=IE=6 http-equiv=X-UA-Compatible></HEAD>
+<BODY>
+<P>There is an emergency in <SPAN class=mapping contentEditable=false>{{Location}}</SPAN></P>
+<P>&nbsp;</P>
+<P>Attached the image capture herein. Other details below:</P>
+<P>&nbsp;</P>
+<P>
+<TABLE height=100 cellSpacing=0 cellPadding=0 width="100%" align=left border=1>
+<TBODY>
+<TR>
+<TH width="33%">Camera Name</TH>
+<TH width="33%">Camera ID</TH>
+<TH width="33%">Camera Location</TH></TR>
+<TR>
+<TD width="33%">
+<P align=center><SPAN class=mapping contentEditable=false>{{CamName}}</SPAN></P></TD>
+<TD width="33%">
+<P align=center><SPAN class=mapping contentEditable=false>{{CamID}}</SPAN></P></TD>
+<TD width="33%">
+<P align=center><SPAN class=mapping contentEditable=false>{{MapLocation}}</SPAN></P></TD></TR></TBODY></TABLE></P>
+<P>&nbsp;</P></BODY></HTML>
